@@ -1,0 +1,71 @@
+{% extends "base.html" %}
+
+{% block content %}
+  {% if request.user.is_authenticated %}
+    {% if breakfast %}
+
+      <figure class="snip1559">
+        <h1>Breakfast</h1>
+        <div class="profile-image"><img src="{{ breakfast.image }}"
+                                        alt="profile-sample2"/></div>
+        <figcaption>
+          {#          <h1>Total Count <br> {{ breakfast_count }}</h1>#}
+          <h3>{{ breakfast.title }}</h3>
+          <h5>{{ breakfast.date }}</h5>
+          <p>{{ breakfast.description }}</p>
+          <p> ${{ breakfast.price }}</p>
+          <form method="post" action='#'>
+            {% csrf_token %}
+            <div align="right">
+              {% if b_opt_in %}
+                <button class="btn btn-outline-danger my-2 my-sm-0" type="submit" name="break-fast-reject">
+                  <center><span
+                    class="material-symbols-outlined">cancel</span></center>
+                </button>
+              {% else %}
+                <button class="btn btn-outline-success my-2 my-sm-0" type="submit" name="break-fast-accept">
+                  <center><span
+                    class="material-symbols-outlined">add_circle</span></center>
+                </button>
+              {% endif %}
+            </div>
+          </form>
+        </figcaption>
+      </figure>
+    {% else %}
+      <p> No Break Fast</p>
+    {% endif %}
+    {% if snacks %}
+      <figure class="snip1559">
+        <h1>Evening Snacks</h1>
+        <div class="profile-image"><img src="{{ snacks.image }}"
+                                        alt="profile-sample2"/></div>
+        <figcaption>
+          {#          <h1>Total Count <br> {{ snacks_count }}</h1>#}
+          <h3>{{ snacks.title }}</h3>
+          <h5>{{ snacks.date }}</h5>
+          <p>{{ snacks.description }}</p>
+          <p> ${{ snacks.price }}</p>
+          <form method="post" action='#'>
+            {% csrf_token %}
+            <div align="right">
+              {% if s_opt_in %}
+                <button class="btn btn-outline-danger my-2 my-sm-0" type="submit" name="snacks-reject">
+                  <center><span
+                    class="material-symbols-outlined">cancel</span></center>
+                </button>
+              {% else %}
+                <button class="btn btn-outline-success my-2 my-sm-0" type="submit" name="snacks-accept">
+                  <center><span
+                    class="material-symbols-outlined">add_circle</span></center>
+                </button>
+              {% endif %}
+            </div>
+          </form>
+        </figcaption>
+      </figure>
+    {% else %}
+      <p> No Snacks</p>
+    {% endif %}
+  {% endif %}
+{% endblock %}

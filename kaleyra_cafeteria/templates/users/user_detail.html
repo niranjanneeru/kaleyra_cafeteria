@@ -1,0 +1,50 @@
+{% extends "base.html" %}
+{% load static %}
+
+{% block title %}User: {{ object.username }}{% endblock %}
+
+{% block content %}
+  <div class="container">
+
+    <div class="row">
+      <div class="col-sm-12">
+
+        <h2>{{ object.username }}</h2>
+        {% if object.name %}
+          <p>{{ object.name }}</p>
+        {% endif %}
+      </div>
+    </div>
+
+    {% if object == request.user %}
+      <!-- Action buttons -->
+      <div class="row">
+
+        <div class="col-sm-12">
+          {% if request.user.is_superuser %}
+            <a class="btn btn-primary" href="/admin" role="button">Admin Panel</a>
+            <a class="btn btn-primary" href="{% url 'breakfast' %}" target="_blank" role="button">SMS Breakfast</a>
+            <a class="btn btn-primary" href="{% url 'snacks' %}" target="_blank" role="button">SMS Evening Snacks</a>
+          {% endif %}
+          <br>
+          <br>
+          <br>
+          <form method="post" action='/profile/'>
+            {% csrf_token %}
+            <label for="phone">Enter a phone number:</label><br><br>
+            <input type="tel" id="phone" name="phone" placeholder="123-45-678" value="{{ request.user.phone_number }}">
+            <button class="btn btn btn-primary" type="submit" name="submit">
+              Submit
+            </button>
+            <br>
+            <small> Phone Number is Mandatory to Receive SMS</small>
+          </form>
+          <!-- Your Stuff: Custom user template urls -->
+        </div>
+
+      </div>
+      <!-- End Action buttons -->
+    {% endif %}
+
+  </div>
+{% endblock content %}

@@ -1,0 +1,39 @@
+{% extends "base.html" %}
+
+{% block content %}
+  <p>Welcome to Kaleyra Cafeteria</p>
+  {% if request.user.is_authenticated %}
+    {% if breakfast %}
+      <figure class="snip1559">
+        <h1>Breakfast</h1>
+        {#        <div class="profile-image"><img src="{{ breakfast.image }}"#}
+        {#                                        alt="profile-sample2"/></div>#}
+        <figcaption>
+          <h1>Total Count <br> {{ breakfast_count }}</h1>
+          <h3>{{ breakfast.title }}</h3>
+          <h5>{{ breakfast.date }}</h5>
+          <p>{{ breakfast.description }}</p>
+          <p> ${{ breakfast.price }}</p>
+        </figcaption>
+      </figure>
+    {% else %}
+      <p> No Break Fast</p>
+    {% endif %}
+    {% if snacks %}
+      <figure class="snip1559">
+        <h1>Evening Snacks</h1>
+        {#        <div class="profile-image"><img src="{{ snacks.image }}"#}
+        {#                                        alt="profile-sample2"/></div>#}
+        <figcaption>
+          <h1>Total Count <br> {{ snacks_count }}</h1>
+          <h3>{{ snacks.title }}</h3>
+          <h5>{{ snacks.date }}</h5>
+          <p>{{ snacks.description }}</p>
+          <p> ${{ snacks.price }}</p>
+        </figcaption>
+      </figure>
+    {% else %}
+      <p> No Snacks</p>
+    {% endif %}
+  {% endif %}
+{% endblock content %}
