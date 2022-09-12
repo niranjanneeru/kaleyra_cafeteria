@@ -44,7 +44,7 @@ LOCALE_PATHS = [str(ROOT_DIR / "locale")]
 DATABASES = {
     "default": env.db(
         "DATABASE_URL",
-        # default="postgres://localhost/kaleyra_cafeteria",
+        default="postgresql://postgres:t458QYp7fWD9xR@db.csjofqqgjusmgolmqbfz.supabase.co:5432/postgres",
     ),
 }
 DATABASES["default"]["ATOMIC_REQUESTS"] = True
